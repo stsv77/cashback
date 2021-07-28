@@ -19,34 +19,43 @@ function calculateCashback(specialCategoryPurchases, otherCategoryPurchases) {
 function handleSubmit(evt){
     evt.preventDefault();
 
+    const specialAmountErrorEl = document.getElementById('special-amount-error');
+    const otherAmountErrorEl = document.getElementById('other-amount-error');
+    const specialCashbackEl = document.getElementById('special-cashback');
+    const otherCashbackEl = document.getElementById('other-cashback');
+    const totalCashbackEl = document.getElementById('total-cashback');
+
+    specialAmountErrorEl.textContent = '';
+    otherAmountErrorEl.textContent = '';
+    specialCashbackEl.textContent = '';
+    otherCashbackEl.textContent = '';
+    totalCashbackEl.textContent = '';
+
     const specialAmountInputEl = document.getElementById('special-amount-input');
     const specialAmount = Number(specialAmountInputEl.value);
     if (Number.isNaN(specialAmount)){
-        // TODO: show error
+        specialAmountErrorEl.textContent = 'Неверное значение. Введите число, например: 10000';
         return;
     }
     if (!Number.isFinite(specialAmount)){
-        // TODO: show error
+        specialAmountErrorEl.textContent = 'Слишком большое число. Введите число, например: 10000';
         return;
-    }
 
-    const otherAmountInputEl = document.getElementById('other-amount-form');
-    const otherAmount = otherAmountInputEl.value;
+    }
+    const otherAmountInputEl = document.getElementById('other-amount-input');
+    const otherAmount = Number(otherAmountInputEl.value);
     if (Number.isNaN(otherAmount)){
-        // TODO: show error
+        otherAmountErrorEl.textContent = 'Неверное значение. Введите число, например: 10000';
         return;
     }
     if (!Number.isFinite(otherAmount)){
-        // TODO: show error
+        otherAmountErrorEl.textContent = 'Слишком большое число. Введите число, например: 10000';
         return;
     }
 
     const result = calculateCashback(specialAmount, otherAmount);
-    const specialCashbackEl = document.getElementById('special-cashback');
     specialCashbackEl.textContent = `${result.specialCategoryCashback} руб.`;
-    const otherCashbackEl = document.getElementById('other-cashback');
     otherCashbackEl.textContent = `${result.otherCategoryCashback} руб.`;
-    const totalCashbackEl = document.getElementById('total-cashback');
     totalCashbackEl.textContent = `${result.totalCashback} руб.`;
 }
 
