@@ -44,7 +44,7 @@ function handleSubmit(evt){
 }
 
 const formEl = document.getElementById('cashback-form');
-formEl.onsubmit = handleSubmit;
+formEl.addEventListener('submit', handleSubmit);
 
 const specialAmountErrorEl = document.getElementById('special-amount-error');
 const otherAmountErrorEl = document.getElementById('other-amount-error');
@@ -53,6 +53,3 @@ const otherCashbackEl = document.getElementById('other-cashback');
 const totalCashbackEl = document.getElementById('total-cashback');
 const specialAmountInputEl = document.getElementById('special-amount-input');
 const otherAmountInputEl = document.getElementById('other-amount-input');
-
-//const cashback = calculateCashback;
-//console.log(cashback(10000, 15000));
